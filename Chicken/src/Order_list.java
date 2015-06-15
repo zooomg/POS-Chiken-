@@ -31,6 +31,7 @@ public class Order_list extends JFrame{
    String menu_name[] = {"순살치킨","후라이드","양념치킨","간장치킨","파닭","치즈"};
    int menu_price[] = {12000,10000,15000,15000,13000,15000};
    HashMap<String, Integer> menu_ = new HashMap<String, Integer>();
+   boolean[] check_pay;
    
    ArrayList<Order> orders = new ArrayList<Order>();
    
@@ -38,15 +39,10 @@ public class Order_list extends JFrame{
    
    int bill_cnt = 0;
    
-   int pay_money = 0;
-   
    int menu_cnt = 0;
    
    JLabel totalmoney;
    JTextField show_totalmoney;
-   
-   JButton orderButton;
-   JButton payButton;
    
    JPanel mainJPanel = new JPanel(new BorderLayout());
    
@@ -54,7 +50,6 @@ public class Order_list extends JFrame{
    JPanel subPanel2 = new JPanel(new GridLayout(3,5,5,5)); //결제 다이얼
    JPanel subPanel3 = new JPanel(new GridLayout(8,2,5,5)); //메뉴판
    
-   JPanel subPanel1_btns = new JPanel();
    JPanel subPanel1_show = new JPanel();
    
    JButton btn1 = new JButton("1");
@@ -89,7 +84,7 @@ public class Order_list extends JFrame{
    JScrollPane jScollPane;
    
    //ArrayList<Order> orders = new ArrayList<Order>();
-   int table_num = 0; // 쓰지도않는 얘는 왜 있는거야
+   int table_num = 0;
    int total_money = 0;
    String[] MenuName = new String[6];
    

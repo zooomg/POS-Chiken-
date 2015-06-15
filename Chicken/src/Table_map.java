@@ -18,7 +18,6 @@ public class Table_map extends JFrame {
 	ArrayList<Table> tables = new ArrayList<Table>();
 
    String menu_name[] = {"순살치킨","후라이드","양념치킨","간장치킨","파닭","치즈"};
-   int[] MenuCnt = new int[6];
    int total_money = 0;
 
    Order_list[] bcf = new Order_list[10000];	//버튼 누를때마다 새로 생기면 안되니까
@@ -35,41 +34,13 @@ public class Table_map extends JFrame {
    JPanel contentPane = new JPanel();
    JPanel mainPanel = new JPanel();
    JPanel subPanel = new JPanel();
-
-   JPanel buttons = new JPanel();
    
    JButton pay_list;
    
    int btncnt = 0;
 
    Table_map() {
-	   BufferedReader br = null;
-		try{
-			br = new BufferedReader(new FileReader("table.txt"));
-			while(true) {
-			    String line = br.readLine();
-			    if (line==null) break;
-			            
-			    String[] temp = line.split("\t\t");
-
-			    String Table_name = temp[2];
-	            int Table_num = Integer.parseInt(temp[2].substring(2));
-	            la[Table_num] = new JButton(Table_name);
-	            la[Table_num].setSize(50, 50);
-	            la[Table_num].addActionListener(new tableListner());
-	            contentPane.add(la[Table_num]);
-	            
-	            la[Table_num].setLocation(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
-	            btncnt = Table_num;
-	            tables.add(new Table(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Table_name));
-	   }
-		}catch(Exception ex){
-			System.out.println(ex);
-		}finally{
-			try{
-				br.close();	
-			}catch(IOException ioe){}
-		}
+	   road_table();
 
       setTitle("치킨집 관리 프로그램");
 
@@ -170,9 +141,6 @@ public class Table_map extends JFrame {
         	 if(btncnt == 999){
         		 btncnt = 0;
         	 }
-        	 
-        	 
-        	 
             btncnt++;
             la[btncnt] = new JButton("좌석" + btncnt);
             la[btncnt].setSize(50, 50);
@@ -227,5 +195,34 @@ public class Table_map extends JFrame {
        } // actionPerformed
 	   
    }
+   public void road_table() {
+	   BufferedReader br = null;
+	try{
+		br = new BufferedReader(new FileReader("table.txt"));
+		while(true) {
+		    String line = br.readLine();
+		    if (line==null) break;
+		            
+		    String[] temp = line.split("\t\t");
 
+		    String Table_name = temp[2];
+            int Table_num = Integer.parseInt(temp[2].substring(2));
+            la[Table_num] = new JButton(Table_name);
+            la[Table_num].setSize(50, 50);
+            la[Table_num].addActionListener(new tableListner());
+            contentPane.add(la[Table_num]);
+            
+            la[Table_num].setLocation(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+            btncnt = Table_num;
+            tables.add(new Table(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Table_name));
+   }
+	}catch(Exception ex){
+		System.out.println(ex);
+	}finally{
+		try{
+			br.close();	
+		}catch(IOException ioe){}
+	}
+	
+}
 }

@@ -48,8 +48,13 @@ public class Bill_form extends JFrame {
 		setSize(500, 500);
 		mainJPanel.add(jScollPane,BorderLayout.CENTER);
 		
-		BufferedReader br = null;
+		all_road();
 		
+		
+		setVisible(true);
+	}
+	public void all_road() {
+		BufferedReader br = null;
 		String path = Bill_form.class.getResource("").getPath();
 		path = path.substring(0, path.length()-4);
 		File dirFile=new File(path);
@@ -89,7 +94,5 @@ public class Bill_form extends JFrame {
 		  }
 		}
 		
-		
-		setVisible(true);
 	}
 }
